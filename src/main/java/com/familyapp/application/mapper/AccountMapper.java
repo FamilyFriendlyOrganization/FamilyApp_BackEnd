@@ -1,0 +1,37 @@
+package com.familyapp.application.mapper;
+
+import com.familyapp.application.dto.AccountDto;
+import com.familyapp.application.entity.Account;
+
+public class AccountMapper {
+    public static AccountDto toDto(Account account) {
+        if (account == null) {
+            return null;
+        }
+        return new AccountDto(
+                account.getAccountId(),
+                account.getUsername(),
+                account.getPassword(),
+                account.getEmail(),
+                account.getUid(),
+                account.getAccountStatus(),
+                account.getDisplayName()
+
+        );
+    }
+
+    public static Account toEntity(AccountDto accountDto) {
+        if (accountDto == null) {
+            return null;
+        }
+        Account account = new Account();
+        account.setAccountId(accountDto.getAccountId());
+        account.setUsername(accountDto.getUsername());
+        account.setPassword(accountDto.getPassword());
+        account.setUid(accountDto.getUID());
+        account.setEmail(accountDto.getEmail());
+        account.setDisplayName(accountDto.getDisplayName());
+        account.setAccountStatus(accountDto.getAccountStatus());
+        return account;
+    }
+}
