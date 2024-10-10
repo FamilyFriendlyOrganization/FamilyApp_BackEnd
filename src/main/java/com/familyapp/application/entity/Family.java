@@ -19,15 +19,13 @@ public class Family {
     @Column(name = "FamilyId")
     private UUID familyId;
 
-    @Column(name="CreatedAccountId")
-    private UUID createdAccountId;
-
     @Column(name = "Budget")
     private int budget;
 
     @Column(name = "FamilyName")
     private String familyName;
     @ManyToOne
-    @JoinColumn(name = "AccountId", nullable = false)  // This defines the foreign key column
-    private Account account;
+    @JoinColumn(name = "CreatedAccountId", nullable = false)  // This defines the foreign key column
+    private Account createdAccountId;
+
 }

@@ -14,6 +14,7 @@ public class TransactionDto {
     private UUID TransactionId;
     private String TransactionName;
     private String Description;
+    private byte TransactionType;
     private int Amount;
     private UUID CategoryId;
     private UUID FamilyId;

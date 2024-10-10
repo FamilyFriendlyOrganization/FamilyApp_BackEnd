@@ -18,5 +18,7 @@ public class ReminderDto {
     private String Description;
     private LocalDateTime RemindDate;
     private byte Status;
+    private UUID FamilyId;
+    private UUID UserId;
 
 }

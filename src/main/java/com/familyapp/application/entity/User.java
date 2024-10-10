@@ -21,10 +21,6 @@ public class User
     @Column(name = "UserId")
     private UUID userId;
 
-    @Column(name = "AssignedAccountId")
-    private UUID assignedAccountId;
-    @Column(name = "FamilyId")
-    private UUID familyId;
     @Column(name = "Name")
     private String name;
     @Column(name = "Sex")
@@ -32,10 +28,15 @@ public class User
     @Column(name = "Birthday")
     private Date birthday;
     @ManyToOne
-    @JoinColumn(name = "AccountId", nullable = false)
-    private Account account;
+    @JoinColumn(name = "AssignedAccountId", nullable = false)
+    private Account assignedAccountId;
 
     @ManyToOne
     @JoinColumn(name = "RoleId", nullable = false)  // This defines the foreign key column
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "FamilyId", nullable = false)
+    private Family family;
+
 }
