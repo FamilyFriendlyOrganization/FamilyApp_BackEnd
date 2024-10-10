@@ -31,7 +31,6 @@ public class User
     private byte sex;
     @Column(name = "Birthday")
     private Date birthday;
-
     @ManyToOne
     @JoinColumn(name = "AccountId", nullable = false)
     private Account account;
