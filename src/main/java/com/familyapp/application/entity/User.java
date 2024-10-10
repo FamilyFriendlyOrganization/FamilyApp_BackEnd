@@ -23,7 +23,6 @@ public class User
 
     @Column(name = "AssignedAccountId")
     private UUID assignedAccountId;
-
     @Column(name = "FamilyId")
     private UUID familyId;
     @Column(name = "Name")
