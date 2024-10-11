@@ -15,7 +15,7 @@ import java.util.UUID;
 @Data
 @Builder
 
-public class Account {
+public class Account extends Password {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "AccountId")
@@ -23,8 +23,7 @@ public class Account {
 
     @Column(name = "Username")
     private String username;
-    @Column(name = "Password")
-    private String password;
+
     @Column(name = "Email")
     private String email;
     @Column(name = "UID")
