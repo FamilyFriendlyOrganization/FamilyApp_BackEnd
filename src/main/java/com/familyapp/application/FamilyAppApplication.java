@@ -12,6 +12,8 @@ public class FamilyAppApplication {
 		System.setProperty("DB_URL", dotenv.get("DB_URL"));
 		System.setProperty("DB_USERNAME", dotenv.get("DB_USERNAME"));
 		System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD"));
+		System.setProperty("CLIENT_ID", dotenv.get("CLIENT_ID"));
+		System.setProperty("CLIENT_SECRET", dotenv.get("CLIENT_SECRET"));
 		SpringApplication.run(FamilyAppApplication.class, args);
 
 	}
