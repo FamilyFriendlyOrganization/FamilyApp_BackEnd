@@ -19,17 +19,17 @@ public class Transaction {
     @Column(name = "TransactionId")
     private UUID transactionId;
 
-    @Column(name="TransactionName")
+    @Column(name="TransactionName", nullable = false)
     private String transactionName;
 
-    @Column(name = "Description")
+    @Column(name = "Description", nullable = false)
     private String description;
 
-    @Column(name = "TransactionType")
-    private byte transactionType;
+    @Column(name = "TransactionType", nullable = false)
+    private Byte transactionType;
 
-    @Column(name = "Amount")
-    private int amount;
+    @Column(name = "Amount", nullable = false)
+    private Integer amount;
 
     @ManyToOne
     @JoinColumn(name = "UserId", nullable = false)  // This defines the foreign key column

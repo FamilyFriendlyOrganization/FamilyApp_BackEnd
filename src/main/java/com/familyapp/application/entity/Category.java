@@ -19,9 +19,9 @@ public class Category {
     @Column(name = "CategoryId")
     private UUID categoryId;
 
-    @Column(name = "CategoryName")
+    @Column(name = "CategoryName", nullable = false)
     private String categoryName;
 
-    @Column(name = "CategoryIcon")
-    private int categoryIcon;
+    @Column(name = "CategoryIcon",nullable = false)
+    private Integer categoryIcon;
 }

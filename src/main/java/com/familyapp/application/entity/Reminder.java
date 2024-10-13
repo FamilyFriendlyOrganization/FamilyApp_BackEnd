@@ -21,14 +21,14 @@ public class Reminder {
     @Column(name = "ReminderId")
     private UUID reminderId;
 
-    @Column(name = "Title")
+    @Column(name = "Title", nullable = false)
     private String title;
-    @Column(name = "Description")
+    @Column(name = "Description", nullable = false)
     private String description;
-    @Column(name = "RemindDate")
+    @Column(name = "RemindDate", nullable = false)
     private LocalDateTime remindDate;
-    @Column(name = "Status")
-    private byte status;
+    @Column(name = "Status", nullable = false)
+    private Byte status;
 
 
 

@@ -17,6 +17,6 @@ public class UserDto {
     private UUID RoleId;
     private UUID FamilyId;
     private String Name;
-    private byte Sex;
+    private Byte Sex;
     private Date Birthday;
 }

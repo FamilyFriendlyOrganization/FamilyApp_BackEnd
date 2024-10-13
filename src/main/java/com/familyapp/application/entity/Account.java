@@ -15,21 +15,24 @@ import java.util.UUID;
 @Data
 @Builder
 
-public class Account extends Password {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "AccountId")
     private UUID accountId;
 
-    @Column(name = "Username")
+    @Column(name = "Username", nullable = false, unique = true)
     private String username;
 
-    @Column(name = "Email")
+    @Column(name = "Password",nullable = false)
+    private String password;
+
+    @Column(name = "Email") //xu ly null sau trong service
     private String email;
 
-    @Column(name = "AccountStatus")
-    private byte accountStatus;
-    @Column(name = "DisplayName")
+    @Column(name = "AccountStatus", nullable = false)
+    private Byte accountStatus;
+    @Column(name = "DisplayName", nullable = false)
     private String displayName;
 
 }
