@@ -26,8 +26,7 @@ public class Account extends Password {
 
     @Column(name = "Email")
     private String email;
-    @Column(name = "UID")
-    private String uid;
+
     @Column(name = "AccountStatus")
     private byte accountStatus;
     @Column(name = "DisplayName")

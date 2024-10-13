@@ -17,7 +17,6 @@ public class AccountDto {
     private String Username;
     private String Password;
     private String Email;
-    private String UID;
     private byte AccountStatus;
     private String DisplayName;
 }

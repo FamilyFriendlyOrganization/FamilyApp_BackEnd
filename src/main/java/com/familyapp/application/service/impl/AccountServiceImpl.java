@@ -49,7 +49,6 @@ public class AccountServiceImpl implements AccountService {
 
         account.setEmail(updatedAccountDto.getEmail());
         account.setDisplayName(updatedAccountDto.getDisplayName());
-        account.setUid(updatedAccountDto.getUID());
         account.setAccountStatus(updatedAccountDto.getAccountStatus());
         Account updatedAccount = accountRepository.save(account);
         return AccountMapper.toDto(updatedAccount);
