@@ -20,9 +20,10 @@ public class Family {
     private UUID familyId;
 
     @Column(name = "Budget")
-    private int budget;
+    private Integer budget=0;
 
-    @Column(name = "FamilyName")
+
+    @Column(name = "FamilyName", nullable = false)
     private String familyName;
     @ManyToOne
     @JoinColumn(name = "CreatedAccountId", nullable = false)  // This defines the foreign key column

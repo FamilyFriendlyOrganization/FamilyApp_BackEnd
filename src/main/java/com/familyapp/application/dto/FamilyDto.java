@@ -13,6 +13,6 @@ import java.util.UUID;
 public class FamilyDto {
     private UUID FamilyId;
     private UUID CreatedAccountId;
-    private int Budget;
+    private Integer Budget;
     private String FamilyName;
 }

@@ -22,11 +22,11 @@ public class User
     @Column(name = "UserId")
     private UUID userId;
 
-    @Column(name = "Name")
+    @Column(name = "Name", nullable = false)
     private String name;
-    @Column(name = "Sex")
-    private byte sex;
-    @Column(name = "Birthday")
+    @Column(name = "Sex", nullable = false)
+    private Byte sex;
+    @Column(name = "Birthday", nullable = false)
     private Date birthday;
     @ManyToOne
     @JoinColumn(name = "AssignedAccountId", nullable = false)

@@ -13,5 +13,5 @@ import java.util.UUID;
 public class CategoryDto {
     private UUID CategoryId;
     private String CategoryName;
-    private int CategoryIcon;
+    private Integer CategoryIcon;
 }

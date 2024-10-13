@@ -21,18 +21,18 @@ public class Notification {
     @Column(name = "NotificationId")
     private UUID notificationId;
 
-    @Column(name="Title")
+    @Column(name="Title", nullable=false)
     private String title;
 
-    @Column(name = "Message")
+    @Column(name = "Message", nullable=false)
     private String message;
 
 
-    @Column(name = "NotificationDateTime")
+    @Column(name = "NotificationDateTime", nullable=false)
     private LocalDateTime notificationDateTime;
 
-    @Column(name = "Status")
-    private byte status;
+    @Column(name = "Status", nullable=false)
+    private Byte status;
 
     @ManyToOne
     @JoinColumn(name = "UserId", nullable = false)  // This defines the foreign key column

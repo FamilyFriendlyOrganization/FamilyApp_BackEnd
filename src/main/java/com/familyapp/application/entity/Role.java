@@ -16,10 +16,10 @@ import java.util.UUID;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "RoleId")
+    @Column(name = "RoleId", nullable = false)
     private UUID roleId;
 
-    @Column(name="RoleName")
+    @Column(name="RoleName", nullable = false)
     private String roleName;
 
     @ManyToOne
