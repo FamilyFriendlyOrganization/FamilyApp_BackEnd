@@ -24,6 +24,7 @@ public class FamilyMapper {
         family.setFamilyId(familyDto.getFamilyId());
         family.setCreatedAccountId(account);
         family.setBudget(familyDto.getBudget());
+        family.setFamilyName(familyDto.getFamilyName());
         return family;
     }
 }
