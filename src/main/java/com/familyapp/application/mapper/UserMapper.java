@@ -21,13 +21,13 @@ public class UserMapper {
                 user.getBirthday()
         );
     }
-    public static User toEntity(UserDto userDto, Role role, Family family) {
+    public static User toEntity(UserDto userDto, Role role, Family family, Account account) {
         if(userDto == null) {
             return null;
         }
         User user = new User();
         user.setUserId(userDto.getUserId());
-        user.getAssignedAccountId().setAccountId(userDto.getAssignedAccountId());
+        user.setAssignedAccountId(account);
         user.setUserId(userDto.getUserId());
         user.setRole(role);
         user.setFamily(family);

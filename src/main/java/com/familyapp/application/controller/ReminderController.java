@@ -22,8 +22,8 @@ public class ReminderController {
     @Autowired
     private ReminderService ReminderService;
     @PostMapping
-    public ResponseEntity<ReminderDto> createReminder(@RequestBody ReminderDto reminderDto, User user, Family family) {
-        return new ResponseEntity<>(ReminderService.createReminder(reminderDto, user,family), HttpStatus.CREATED);
+    public ResponseEntity<ReminderDto> createReminder(@RequestBody ReminderDto reminderDto) {
+        return new ResponseEntity<>(ReminderService.createReminder(reminderDto), HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")

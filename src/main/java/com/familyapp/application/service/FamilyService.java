@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface FamilyService {
-    FamilyDto createFamily(FamilyDto familyDto, Account account);
+    FamilyDto createFamily(FamilyDto familyDto);
     FamilyDto getFamilybyId(UUID familyId);
     FamilyDto updateFamily(UUID FamilyId, FamilyDto familyDto);
     List<FamilyDto> getAllFamily();

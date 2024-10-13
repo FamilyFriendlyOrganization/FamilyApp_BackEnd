@@ -26,8 +26,14 @@ public class ReminderServiceImpl implements ReminderService {
     private UserRepository userRepository;
     private FamilyRepository familyRepository;
     @Override
-    public ReminderDto createReminder(ReminderDto reminderDto, User user, Family family) {
-        Reminder reminder = ReminderMapper.toEntity(reminderDto, user, family);
+    public ReminderDto createReminder(ReminderDto reminderDto) {
+        Family family = familyRepository.findById(reminderDto.getFamilyId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + reminderDto.getFamilyId()));
+        User user = userRepository.findById(reminderDto.getUserId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + reminderDto.getUserId()));
+        Reminder reminder = ReminderMapper.toEntity(reminderDto,user,family);
         Reminder savedReminder = reminderRepository.save(reminder);
         return ReminderMapper.toDto(savedReminder);
     }

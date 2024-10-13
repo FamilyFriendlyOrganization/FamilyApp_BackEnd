@@ -3,6 +3,7 @@ package com.familyapp.application.service.impl;
 import com.familyapp.application.dto.AccountDto;
 import com.familyapp.application.dto.RoleDto;
 import com.familyapp.application.entity.Account;
+import com.familyapp.application.entity.Category;
 import com.familyapp.application.entity.Family;
 import com.familyapp.application.entity.Role;
 import com.familyapp.application.exception.ResourceNotFoundException;
@@ -26,7 +27,10 @@ public class RoleServiceImpl implements RoleService {
     private RoleRepository roleRepository;
     private FamilyRepository familyRepository;
     @Override
-    public RoleDto createRole(RoleDto roleDto, Family family) {
+    public RoleDto createRole(RoleDto roleDto) {
+        Family family = familyRepository.findById(roleDto.getFamilyId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + roleDto.getFamilyId()));
         Role Role = RoleMapper.toEntity(roleDto,family);
         Role savedRole = roleRepository.save(Role);
         return RoleMapper.toDto(savedRole);

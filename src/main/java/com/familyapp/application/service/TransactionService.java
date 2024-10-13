@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface TransactionService {
-    TransactionDto createTransaction(TransactionDto transactionDto, Category category, Family family, User user );
+    TransactionDto createTransaction(TransactionDto transactionDto);
     TransactionDto getTransactionbyId(UUID transactionId);
     TransactionDto updateTransaction(UUID transactionId, TransactionDto transactionDto);
     List<TransactionDto> getAllTransaction();

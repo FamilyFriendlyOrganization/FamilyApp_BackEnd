@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface UserService {
-    UserDto createUser(UserDto userDto, Role role, Family family);
+    UserDto createUser(UserDto userDto);
     UserDto getUserbyId(UUID userId);
     UserDto updateUser(UUID userId, UserDto userDto);
     List<UserDto> getAllUser();

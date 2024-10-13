@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface NotificationService {
-    NotificationDto createNotification(NotificationDto notificationDto, User user, Family family);
+    NotificationDto createNotification(NotificationDto notificationDto);
     NotificationDto getNotificationbyId(UUID notificationId);
     NotificationDto updateNotification(UUID notificationId, NotificationDto notificationDto);
     List<NotificationDto> getAllNotification();
