@@ -21,7 +21,7 @@ public class UserMapper {
                 user.getBirthday()
         );
     }
-    public static User toEntity(UserDto userDto, Role role, Family family, Account account) {
+    public static User toEntity(UserDto userDto, Role role, Family family) {
         if(userDto == null) {
             return null;
         }

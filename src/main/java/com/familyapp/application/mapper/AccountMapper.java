@@ -13,7 +13,6 @@ public class AccountMapper {
                 account.getUsername(),
                 account.getPassword(),
                 account.getEmail(),
-                account.getUid(),
                 account.getAccountStatus(),
                 account.getDisplayName()
 
@@ -28,7 +27,6 @@ public class AccountMapper {
         account.setAccountId(accountDto.getAccountId());
         account.setUsername(accountDto.getUsername());
         account.setPassword(accountDto.getPassword());
-        account.setUid(accountDto.getUID());
         account.setEmail(accountDto.getEmail());
         account.setDisplayName(accountDto.getDisplayName());
         account.setAccountStatus(accountDto.getAccountStatus());
