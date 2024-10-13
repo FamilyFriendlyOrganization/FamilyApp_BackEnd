@@ -29,7 +29,13 @@ public class NotificationServiceImpl implements NotificationService {
     private FamilyRepository familyRepository;
     private UserRepository userRepository;
     @Override
-    public NotificationDto createNotification(NotificationDto notificationDto, User user, Family family) {
+    public NotificationDto createNotification(NotificationDto notificationDto) {
+        Family family = familyRepository.findById(notificationDto.getFamilyId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + notificationDto.getFamilyId()));
+        User user = userRepository.findById(notificationDto.getUserId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + notificationDto.getUserId()));
         Notification notification = NotificationMapper.toEntity(notificationDto, user, family);
         Notification savedNotification = notificationRepository.save(notification);
         return NotificationMapper.toDto(savedNotification);

@@ -21,8 +21,8 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
     @PostMapping
-    public ResponseEntity<RoleDto> createRole(@RequestBody RoleDto roleDto, Family family) {
-        return new ResponseEntity<>(roleService.createRole(roleDto, family), HttpStatus.CREATED);
+    public ResponseEntity<RoleDto> createRole(@RequestBody RoleDto roleDto) {
+        return new ResponseEntity<>(roleService.createRole(roleDto), HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")

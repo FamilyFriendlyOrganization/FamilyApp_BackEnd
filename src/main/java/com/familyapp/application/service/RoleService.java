@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface RoleService {
-    RoleDto createRole(RoleDto roleDto, Family family);
+    RoleDto createRole(RoleDto roleDto);
     RoleDto getRolebyId(UUID roleId);
     RoleDto updateRole(UUID roleId, RoleDto roleDto);
     List<RoleDto> getAllRole();

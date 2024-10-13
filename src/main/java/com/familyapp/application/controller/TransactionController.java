@@ -23,8 +23,8 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
     @PostMapping
-    public ResponseEntity<TransactionDto> createTransaction(@RequestBody TransactionDto transactionDto, Category category, Family family, User user ) {
-        return new ResponseEntity<>(transactionService.createTransaction(transactionDto,category,family,user), HttpStatus.CREATED);
+    public ResponseEntity<TransactionDto> createTransaction(@RequestBody TransactionDto transactionDto ) {
+        return new ResponseEntity<>(transactionService.createTransaction(transactionDto), HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")

@@ -2,13 +2,13 @@ package com.familyapp.application.service.impl;
 
 import com.familyapp.application.dto.AccountDto;
 import com.familyapp.application.dto.UserDto;
-import com.familyapp.application.entity.Account;
-import com.familyapp.application.entity.Family;
-import com.familyapp.application.entity.Role;
-import com.familyapp.application.entity.User;
+import com.familyapp.application.entity.*;
 import com.familyapp.application.exception.ResourceNotFoundException;
 import com.familyapp.application.mapper.AccountMapper;
 import com.familyapp.application.mapper.UserMapper;
+import com.familyapp.application.repository.AccountRepository;
+import com.familyapp.application.repository.FamilyRepository;
+import com.familyapp.application.repository.RoleRepository;
 import com.familyapp.application.repository.UserRepository;
 import com.familyapp.application.service.UserService;
 import lombok.AllArgsConstructor;
@@ -24,9 +24,26 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private FamilyRepository familyRepository;
+    @Autowired
+    private AccountRepository accountRepository;
+
     @Override
-    public UserDto createUser(UserDto userDto, Role role, Family family) {
-        User user = UserMapper.toEntity(userDto, role, family);
+    public UserDto createUser(UserDto userDto) {
+        Role role = roleRepository.findById(userDto.getRoleId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + userDto.getRoleId()));
+        Family family = familyRepository.findById(userDto.getFamilyId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + userDto.getFamilyId()));
+        Account account = accountRepository.findById(userDto.getAssignedAccountId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + userDto.getAssignedAccountId()));
+
+        User user = UserMapper.toEntity(userDto, role, family,account);
         User savedUser = userRepository.save(user);
         return UserMapper.toDto(savedUser);
     }

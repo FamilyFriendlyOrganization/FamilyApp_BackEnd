@@ -21,8 +21,8 @@ public class FamilyController {
     @Autowired
     private FamilyService familyService;
     @PostMapping
-    public ResponseEntity<FamilyDto> createFamily(@RequestBody FamilyDto familyDto, Account account) {
-        return new ResponseEntity<>(familyService.createFamily(familyDto, account), HttpStatus.CREATED);
+    public ResponseEntity<FamilyDto> createFamily(@RequestBody FamilyDto familyDto) {
+        return new ResponseEntity<>(familyService.createFamily(familyDto), HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")

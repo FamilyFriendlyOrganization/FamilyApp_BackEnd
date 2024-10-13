@@ -26,7 +26,10 @@ public class FamilyServiceImpl implements FamilyService {
     private FamilyRepository familyRepository;
     private AccountRepository accountRepository;
     @Override
-    public FamilyDto createFamily(FamilyDto familyDto, Account account) {
+    public FamilyDto createFamily(FamilyDto familyDto) {
+        Account account = accountRepository.findById(familyDto.getCreatedAccountId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + familyDto.getCreatedAccountId()));
         Family family = FamilyMapper.toEntity(familyDto, account);
         Family savedFamily = familyRepository.save(family);
         return FamilyMapper.toDto(savedFamily);

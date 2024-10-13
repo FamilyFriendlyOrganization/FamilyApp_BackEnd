@@ -22,8 +22,8 @@ public class NotificationController {
     @Autowired
     private NotificationService notificationService;
     @PostMapping
-    public ResponseEntity<NotificationDto> createNotification(@RequestBody NotificationDto notificationDto, User user, Family family) {
-        return new ResponseEntity<>(notificationService.createNotification(notificationDto, user, family), HttpStatus.CREATED);
+    public ResponseEntity<NotificationDto> createNotification(@RequestBody NotificationDto notificationDto) {
+        return new ResponseEntity<>(notificationService.createNotification(notificationDto), HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")

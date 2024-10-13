@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ReminderService {
-    ReminderDto createReminder(ReminderDto reminderDto, User user, Family family);
+    ReminderDto createReminder(ReminderDto reminderDto);
     ReminderDto getReminderbyId(UUID reminderId);
     ReminderDto updateReminder(UUID reminderId, ReminderDto reminderDto);
     List<ReminderDto> getAllReminder();

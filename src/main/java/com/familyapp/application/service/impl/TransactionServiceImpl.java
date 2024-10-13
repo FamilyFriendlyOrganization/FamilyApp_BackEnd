@@ -5,6 +5,7 @@ import com.familyapp.application.dto.TransactionDto;
 import com.familyapp.application.entity.*;
 import com.familyapp.application.exception.ResourceNotFoundException;
 import com.familyapp.application.mapper.AccountMapper;
+import com.familyapp.application.mapper.FamilyMapper;
 import com.familyapp.application.mapper.TransactionMapper;
 import com.familyapp.application.repository.CategoryRepository;
 import com.familyapp.application.repository.FamilyRepository;
@@ -28,7 +29,16 @@ public class TransactionServiceImpl implements TransactionService {
     private FamilyRepository familyRepository;
     private UserRepository userRepository;
     @Override
-    public TransactionDto createTransaction(TransactionDto transactionDto, Category category, Family family, User user) {
+    public TransactionDto createTransaction(TransactionDto transactionDto) {
+        Category category = categoryRepository.findById(transactionDto.getCategoryId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + transactionDto.getCategoryId()));
+        Family family = familyRepository.findById(transactionDto.getFamilyId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + transactionDto.getCategoryId()));
+        User user = userRepository.findById(transactionDto.getUserId())
+                .orElseThrow(
+                        () -> new ResourceNotFoundException("Account not found with given Id: " + transactionDto.getCategoryId()));
         Transaction transaction = TransactionMapper.toEntity(transactionDto, category, family, user);
         Transaction savedTransaction = transactionRepository.save(transaction);
         return TransactionMapper.toDto(savedTransaction);
