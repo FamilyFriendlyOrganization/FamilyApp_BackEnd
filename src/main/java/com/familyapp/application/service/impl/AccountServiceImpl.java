@@ -1,6 +1,7 @@
 package com.familyapp.application.service.impl;
 
 import com.familyapp.application.dto.AccountDto;
+import com.familyapp.application.dto.AccountNoPassDto;
 import com.familyapp.application.entity.Account;
 import com.familyapp.application.exception.ResourceNotFoundException;
 import com.familyapp.application.mapper.AccountMapper;
@@ -28,10 +29,10 @@ public class AccountServiceImpl implements AccountService {
         return AccountMapper.toDto(savedAccount);
     }
 
-    public AccountDto getAccountById(UUID accountId) {
+    public AccountNoPassDto getAccountById(UUID accountId) {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found " + accountId));
-        return AccountMapper.toDto(account);
+        return AccountMapper.toNoPassDto(account);
     }
 
     @Override

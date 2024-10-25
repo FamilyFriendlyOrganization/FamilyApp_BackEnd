@@ -1,6 +1,7 @@
 package com.familyapp.application.controller;
 
 import com.familyapp.application.dto.AccountDto;
+import com.familyapp.application.dto.AccountNoPassDto;
 import com.familyapp.application.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,9 @@ public class AccountController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<AccountDto> getAccountById(@PathVariable("id") UUID accountId){
-        AccountDto accountDto = accountService.getAccountById(accountId);
-        return ResponseEntity.ok(accountDto);
+    public ResponseEntity<AccountNoPassDto> getAccountById(@PathVariable("id") UUID accountId){
+        AccountNoPassDto accountNoPassDto = accountService.getAccountById(accountId);
+        return ResponseEntity.ok(accountNoPassDto);
     }
 
     @GetMapping
