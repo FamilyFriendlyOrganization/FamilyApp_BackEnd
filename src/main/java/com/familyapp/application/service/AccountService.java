@@ -1,13 +1,15 @@
 package com.familyapp.application.service;
 
 import com.familyapp.application.dto.AccountDto;
+import com.familyapp.application.dto.AccountNoPassDto;
+
 import java.util.List;
 import java.util.UUID;
 
 public interface AccountService {
     AccountDto createAccount(AccountDto accountDto);
 
-    AccountDto getAccountById(UUID accountId);
+    AccountNoPassDto getAccountById(UUID accountId);
 
     List<AccountDto> getAllAccounts();
 
