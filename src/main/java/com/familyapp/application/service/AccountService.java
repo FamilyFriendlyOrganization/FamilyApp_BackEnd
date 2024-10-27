@@ -9,6 +9,7 @@ import java.util.UUID;
 public interface AccountService {
     AccountDto createAccount(AccountDto accountDto);
 
+    AccountDto getUsername(String username);
     AccountNoPassDto getAccountById(UUID accountId);
 
     List<AccountDto> getAllAccounts();

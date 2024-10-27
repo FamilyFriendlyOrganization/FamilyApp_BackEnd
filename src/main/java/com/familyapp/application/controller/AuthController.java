@@ -1,6 +1,7 @@
 package com.familyapp.application.controller;
 
 import com.familyapp.application.dto.AccountDto;
+import com.familyapp.application.dto.JwtAuthResponse;
 import com.familyapp.application.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,13 @@ public class AuthController {
         return new ResponseEntity<>(authService.register(accountDto), HttpStatus.CREATED);
     }
     @PostMapping("/login")
-    public ResponseEntity<AccountDto> login(@RequestBody AccountDto accountDto) {
-        return new ResponseEntity<>(authService.login(accountDto), HttpStatus.OK);
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody AccountDto accountDto) {
+
+        String token = authService.login(accountDto);
+
+        JwtAuthResponse jwtAuthResponse=new JwtAuthResponse();
+        jwtAuthResponse.setAccessToken(token);
+
+        return new ResponseEntity<>(jwtAuthResponse, HttpStatus.OK);
     }
 }

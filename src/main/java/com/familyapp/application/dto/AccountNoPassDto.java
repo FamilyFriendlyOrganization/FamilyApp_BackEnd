@@ -18,5 +18,6 @@ public class AccountNoPassDto {
     private String Email;
     private Byte AccountStatus;
     private String DisplayName;
+    private String token;
 }
 

@@ -29,6 +29,12 @@ public class AccountServiceImpl implements AccountService {
         return AccountMapper.toDto(savedAccount);
     }
 
+    @Override
+    public AccountDto getUsername(String username) {
+        Account accounts = accountRepository.findByUsername(username);
+        return AccountMapper.toDto(accounts);
+    }
+
     public AccountNoPassDto getAccountById(UUID accountId) {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(() -> new ResourceNotFoundException("Account not found " + accountId));
