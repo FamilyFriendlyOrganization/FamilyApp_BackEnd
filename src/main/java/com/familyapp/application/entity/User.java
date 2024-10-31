@@ -28,9 +28,14 @@ public class User
     private Byte sex;
     @Column(name = "Birthday", nullable = false)
     private Date birthday;
+
+    @Column(name="Status", nullable = false)
+    private Integer status;
+
     @ManyToOne
     @JoinColumn(name = "AssignedAccountId", nullable = false)
     private Account assignedAccountId;
+
 
     @ManyToOne
     @JoinColumn(name = "RoleId", nullable = false)  // This defines the foreign key column

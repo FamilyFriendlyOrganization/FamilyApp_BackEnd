@@ -16,7 +16,7 @@ public class AccountNoPassDto {
     private UUID AccountId;
     private String Username;
     private String Email;
-    private Byte AccountStatus;
+    private Integer AccountStatus;
     private String DisplayName;
     private String token;
 }

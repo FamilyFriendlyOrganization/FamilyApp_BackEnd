@@ -22,6 +22,8 @@ public class Role {
     @Column(name="RoleName", nullable = false)
     private String roleName;
 
+
+
     @ManyToOne
     @JoinColumn(name = "FamilyId", nullable = false)  // This defines the foreign key column
     private Family family;

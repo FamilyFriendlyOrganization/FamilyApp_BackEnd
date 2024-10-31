@@ -13,6 +13,7 @@ public class FamilyMapper {
                 family.getFamilyId(),
                 family.getCreatedAccountId().getAccountId(),
                 family.getBudget(),
+                family.getStatus(),
                 family.getFamilyName()
         );
     }
@@ -23,6 +24,7 @@ public class FamilyMapper {
         Family family = new Family();
         family.setFamilyId(familyDto.getFamilyId());
         family.setCreatedAccountId(account);
+        family.setStatus(familyDto.getStatus());
         family.setBudget(familyDto.getBudget());
         family.setFamilyName(familyDto.getFamilyName());
         return family;

@@ -18,6 +18,7 @@ public class TransactionMapper {
                 transaction.getTransactionType(),
                 transaction.getAmount(),
                 transaction.getCategory().getCategoryId(),
+                transaction.getStatus(),
                 transaction.getFamily().getFamilyId(),
                 transaction.getUser().getUserId()
         );
@@ -34,6 +35,7 @@ public class TransactionMapper {
         transaction.setAmount(transactionDto.getAmount());
         transaction.setCategory(category);
         transaction.setFamily(family);
+        transaction.setStatus(transactionDto.getStatus());
         transaction.setUser(user);
         return transaction;
     }

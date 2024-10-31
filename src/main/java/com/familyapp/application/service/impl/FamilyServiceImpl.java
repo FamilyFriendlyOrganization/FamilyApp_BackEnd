@@ -70,4 +70,7 @@ public class FamilyServiceImpl implements FamilyService {
                         () -> new ResourceNotFoundException("Family is not exist with given Id: " + FamilyId));
         familyRepository.deleteById(FamilyId);
     }
+
+
+
 }

@@ -14,5 +14,6 @@ public class FamilyDto {
     private UUID FamilyId;
     private UUID CreatedAccountId;
     private Integer Budget;
+    private Integer Status;
     private String FamilyName;
 }
