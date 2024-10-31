@@ -2,7 +2,12 @@ package com.familyapp.application.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +20,7 @@ import java.util.UUID;
 @Data
 @Builder
 
-public class Account {
+public class Account implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "AccountId")
@@ -31,8 +36,13 @@ public class Account {
     private String email;
 
     @Column(name = "AccountStatus", nullable = false)
-    private Byte accountStatus;
+    private Integer accountStatus;
     @Column(name = "DisplayName", nullable = false)
     private String displayName;
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // Return authorities granted to the user (roles, permissions)
+        return Collections.emptyList(); // Replace with actual roles if needed
+    }
 }

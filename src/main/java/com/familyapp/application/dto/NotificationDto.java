@@ -18,6 +18,6 @@ public class NotificationDto {
     private UUID FamilyId;
     private UUID UserId;
     private LocalDateTime NotificationDateTime;
-    private Byte Status;
+    private Integer Status;
 
 }

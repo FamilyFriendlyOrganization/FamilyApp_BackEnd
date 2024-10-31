@@ -1,6 +1,7 @@
 package com.familyapp.application.controller;
 
 import com.familyapp.application.dto.AccountDto;
+import com.familyapp.application.dto.FamilyDto;
 import com.familyapp.application.dto.TransactionDto;
 import com.familyapp.application.entity.Category;
 import com.familyapp.application.entity.Family;
@@ -22,8 +23,10 @@ import java.util.UUID;
 public class TransactionController {
     @Autowired
     private TransactionService transactionService;
-    @PostMapping
-    public ResponseEntity<TransactionDto> createTransaction(@RequestBody TransactionDto transactionDto ) {
+
+
+    @PostMapping("{handle}")
+    public ResponseEntity<TransactionDto> handleNewTransaction(@RequestBody TransactionDto transactionDto ) {
         return new ResponseEntity<>(transactionService.createTransaction(transactionDto), HttpStatus.CREATED);
     }
 

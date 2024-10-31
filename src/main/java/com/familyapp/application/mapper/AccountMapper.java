@@ -38,12 +38,12 @@ public class AccountMapper {
         if (account == null) {
             return null;
         }
-        return new AccountNoPassDto(
-                account.getAccountId(),
-                account.getUsername(),
-                account.getEmail(),
-                account.getAccountStatus(),
-                account.getDisplayName()
-        );
+        AccountNoPassDto accountNoPassDto = new AccountNoPassDto();
+        accountNoPassDto.setAccountId(account.getAccountId());
+        accountNoPassDto.setUsername(account.getUsername());
+        accountNoPassDto.setEmail(account.getEmail());
+        accountNoPassDto.setDisplayName(account.getDisplayName());
+        accountNoPassDto.setAccountStatus(account.getAccountStatus());
+        return accountNoPassDto;
     }
 }

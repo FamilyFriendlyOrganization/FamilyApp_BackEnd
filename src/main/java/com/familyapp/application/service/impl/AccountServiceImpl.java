@@ -9,6 +9,8 @@ import com.familyapp.application.repository.AccountRepository;
 import com.familyapp.application.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.security.auth.login.AccountNotFoundException;
@@ -18,16 +20,28 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
+
 public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Account account = accountRepository.findByUsername(username);
+        return account;
+    }
     @Override
     public AccountDto createAccount(AccountDto accountDto) {
         Account account = AccountMapper.toEntity(accountDto);
         Account savedAccount = accountRepository.save(account);
         return AccountMapper.toDto(savedAccount);
     }
+
+//    @Override
+//    public AccountDto getUsername(String username) {
+//        Account accounts = accountRepository.findByUsername(username);
+//        return AccountMapper.toDto(accounts);
+//    }
 
     public AccountNoPassDto getAccountById(UUID accountId) {
         Account account = accountRepository.findById(accountId)

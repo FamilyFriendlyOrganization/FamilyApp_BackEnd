@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -32,7 +31,7 @@ public class Notification {
     private LocalDateTime notificationDateTime;
 
     @Column(name = "Status", nullable=false)
-    private Byte status;
+    private Integer status;
 
     @ManyToOne
     @JoinColumn(name = "UserId", nullable = false)  // This defines the foreign key column

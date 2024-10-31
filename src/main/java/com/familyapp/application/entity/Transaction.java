@@ -31,6 +31,9 @@ public class Transaction {
     @Column(name = "Amount", nullable = false)
     private Integer amount;
 
+    @Column(name="Status", nullable = false)
+    private Integer status;
+
     @ManyToOne
     @JoinColumn(name = "UserId", nullable = false)  // This defines the foreign key column
     private User user;

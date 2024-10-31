@@ -22,6 +22,8 @@ public class Family {
     @Column(name = "Budget")
     private Integer budget=0;
 
+    @Column(name="Status", nullable = false)
+    private Integer status;
 
     @Column(name = "FamilyName", nullable = false)
     private String familyName;

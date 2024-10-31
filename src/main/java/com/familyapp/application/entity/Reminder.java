@@ -28,7 +28,7 @@ public class Reminder {
     @Column(name = "RemindDate", nullable = false)
     private LocalDateTime remindDate;
     @Column(name = "Status", nullable = false)
-    private Byte status;
+    private Integer status;
 
 
 

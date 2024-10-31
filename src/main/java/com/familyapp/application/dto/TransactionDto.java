@@ -17,6 +17,7 @@ public class TransactionDto {
     private Byte TransactionType;
     private Integer Amount;
     private UUID CategoryId;
+    private Integer Status;
     private UUID FamilyId;
     private UUID UserId;
 }

@@ -14,4 +14,5 @@ public class CategoryDto {
     private UUID CategoryId;
     private String CategoryName;
     private Integer CategoryIcon;
+    private Integer Status;
 }

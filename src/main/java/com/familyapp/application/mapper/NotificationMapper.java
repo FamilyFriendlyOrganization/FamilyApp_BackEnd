@@ -30,6 +30,7 @@ public class NotificationMapper {
         notification.setMessage(notificationDto.getMessage());
         notification.setFamily(family);
         notification.setUser(user);
+        notification.setStatus(notificationDto.getStatus());
         notification.setNotificationDateTime(notificationDto.getNotificationDateTime());
         notification.setStatus(notificationDto.getStatus());
         return notification;

@@ -24,4 +24,8 @@ public class Category {
 
     @Column(name = "CategoryIcon",nullable = false)
     private Integer categoryIcon;
+
+    @Column(name="Status", nullable = false)
+    private Integer status;
+
 }

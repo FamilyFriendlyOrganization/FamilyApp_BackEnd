@@ -17,7 +17,7 @@ public class AccountDto {
     private String Username;
     private String Password;
     private String Email;
-    private Byte AccountStatus;
+    private Integer AccountStatus;
     private String DisplayName;
 }
 
