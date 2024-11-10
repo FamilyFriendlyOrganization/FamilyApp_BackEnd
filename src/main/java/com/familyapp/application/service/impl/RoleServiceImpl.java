@@ -30,7 +30,7 @@ public class RoleServiceImpl implements RoleService {
     public RoleDto createRole(RoleDto roleDto) {
         Family family = familyRepository.findById(roleDto.getFamilyId())
                 .orElseThrow(
-                        () -> new ResourceNotFoundException("Account not found with given Id: " + roleDto.getFamilyId()));
+                        () -> new ResourceNotFoundException("Family not found with given Id: " + roleDto.getFamilyId()));
         Role Role = RoleMapper.toEntity(roleDto,family);
         Role savedRole = roleRepository.save(Role);
         return RoleMapper.toDto(savedRole);

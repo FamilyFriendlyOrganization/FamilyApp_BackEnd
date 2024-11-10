@@ -2,7 +2,11 @@ package com.familyapp.application.controller;
 
 import com.familyapp.application.dto.AccountDto;
 import com.familyapp.application.dto.FamilyDto;
+import com.familyapp.application.dto.FamilyResponseDto;
+import com.familyapp.application.dto.UserDto;
 import com.familyapp.application.entity.Account;
+import com.familyapp.application.entity.User;
+import com.familyapp.application.exception.ResourceNotFoundException;
 import com.familyapp.application.service.FamilyService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +25,10 @@ public class FamilyController {
     @Autowired
     private FamilyService familyService;
     @PostMapping
-    public ResponseEntity<FamilyDto> createFamily(@RequestBody FamilyDto familyDto) {
-        return new ResponseEntity<>(familyService.createFamily(familyDto), HttpStatus.CREATED);
+    public ResponseEntity<FamilyResponseDto> createFamily(@RequestBody FamilyResponseDto familyRDto) {
+        return new ResponseEntity<>(familyService.createFamily(familyRDto), HttpStatus.CREATED);
     }
+
 
     @GetMapping("{id}")
     public ResponseEntity<FamilyDto> getFamilyById(@PathVariable("id") UUID FamilyId){
@@ -48,4 +53,11 @@ public class FamilyController {
         familyService.deleteFamily(FamilyId);
         return ResponseEntity.ok("Family deleted successfully");
     }
+
+    @PutMapping("/accept")
+    public ResponseEntity<FamilyResponseDto> acceptInvitation(@RequestParam String inviteCode, @RequestParam UUID accountId) {
+            FamilyResponseDto familyResponse = familyService.acceptInvitation(inviteCode, accountId);
+            return ResponseEntity.ok(familyResponse);
+    }
+
 }
