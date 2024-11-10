@@ -25,7 +25,7 @@ public class User
     @Column(name = "Name", nullable = false)
     private String name;
     @Column(name = "Sex", nullable = false)
-    private Byte sex;
+    private Integer sex;
     @Column(name = "Birthday", nullable = false)
     private Date birthday;
 

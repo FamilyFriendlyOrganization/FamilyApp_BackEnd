@@ -18,7 +18,8 @@ public class UserMapper {
                 user.getFamily().getFamilyId(),
                 user.getName(),
                 user.getSex(),
-                user.getBirthday()
+                user.getBirthday(),
+                user.getStatus()
         );
     }
     public static User toEntity(UserDto userDto, Role role, Family family, Account account) {
@@ -33,6 +34,7 @@ public class UserMapper {
         user.setFamily(family);
         user.setName(userDto.getName());
         user.setSex(userDto.getSex());
+        user.setStatus(userDto.getStatus());
         user.setBirthday(userDto.getBirthday());
         return user;
     }
