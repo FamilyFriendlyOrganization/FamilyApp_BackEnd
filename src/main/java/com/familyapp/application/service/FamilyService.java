@@ -10,9 +10,11 @@ import java.util.UUID;
 
 public interface FamilyService {
     FamilyResponseDto createFamily(FamilyResponseDto familyDto);
-    FamilyDto getFamilybyId(UUID familyId);
+    FamilyResponseDto getFamilybyId(UUID familyId);
     FamilyDto updateFamily(UUID FamilyId, FamilyDto familyDto);
     List<FamilyDto> getAllFamily();
     void deleteFamily(UUID familyId);
     FamilyResponseDto acceptInvitation(String inviteCode, UUID accountId);
+
+    void joinFamily(String inviteCode, UUID accountId);
 }

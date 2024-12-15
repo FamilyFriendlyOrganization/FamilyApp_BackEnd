@@ -31,9 +31,9 @@ public class FamilyController {
 
 
     @GetMapping("{id}")
-    public ResponseEntity<FamilyDto> getFamilyById(@PathVariable("id") UUID FamilyId){
-        FamilyDto FamilyDto = familyService.getFamilybyId(FamilyId);
-        return ResponseEntity.ok(FamilyDto);
+    public ResponseEntity<FamilyResponseDto> getFamilyById(@PathVariable("id") UUID FamilyId){
+        FamilyResponseDto familyResponse = familyService.getFamilybyId(FamilyId);
+        return ResponseEntity.ok(familyResponse);
     }
 
     @GetMapping
@@ -59,5 +59,15 @@ public class FamilyController {
             FamilyResponseDto familyResponse = familyService.acceptInvitation(inviteCode, accountId);
             return ResponseEntity.ok(familyResponse);
     }
+    @PostMapping("/join")
+    public ResponseEntity<String> joinFamily(@RequestParam String inviteCode, @RequestParam UUID accountId) {
+        try {
+            familyService.joinFamily(inviteCode, accountId);
+            return ResponseEntity.ok("Request to join family has been sent.");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 
 }
