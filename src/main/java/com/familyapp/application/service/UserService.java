@@ -15,4 +15,7 @@ public interface UserService {
     UserDto updateUser(UUID userId, UserDto userDto);
     List<UserDto> getAllUser();
     void deleteUser(UUID userId);
+
+    boolean isUserInFamily(UUID accountId, UUID familyId);
+    List<UserDto> getUsersByFamilyId(UUID familyId);
 }

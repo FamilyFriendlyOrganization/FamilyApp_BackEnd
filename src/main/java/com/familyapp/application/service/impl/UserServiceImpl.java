@@ -82,4 +82,19 @@ public class UserServiceImpl implements UserService {
                         () -> new ResourceNotFoundException("User is not exist with given Id: " + userId));
         userRepository.deleteById(userId);
     }
+
+    @Override
+    public boolean isUserInFamily(UUID accountId, UUID familyId) {
+        // Check if a user with the given accountId is associated with the given familyId
+        return userRepository.existsByAssignedAccountId_AccountIdAndFamily_FamilyId(accountId, familyId);
+    }
+
+    @Override
+    public List<UserDto> getUsersByFamilyId(UUID familyId) {
+        List<User> users = userRepository.findAllByFamily_FamilyId(familyId);
+        return users.stream().map(UserMapper::toDto).collect(Collectors.toList());
+    }
+
+
+
 }
