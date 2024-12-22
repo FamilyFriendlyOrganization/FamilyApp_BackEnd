@@ -6,6 +6,6 @@ import com.familyapp.application.dto.AccountNoPassDto;
 import java.util.Map;
 
 public interface AuthService {
-    AccountDto register(AccountDto accountDto);
+    AccountNoPassDto register(AccountDto accountDto);
     AccountNoPassDto login(AccountDto accountDto);
 }

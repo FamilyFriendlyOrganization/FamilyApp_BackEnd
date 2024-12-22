@@ -5,6 +5,7 @@ import com.familyapp.application.dto.ReminderDto;
 import com.familyapp.application.entity.Family;
 import com.familyapp.application.entity.User;
 import com.familyapp.application.service.ReminderService;
+import com.familyapp.application.service.impl.ReminderServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,5 +49,11 @@ public class ReminderController {
     public ResponseEntity<String> deleteReminder(@PathVariable("id") UUID reminderId){
         ReminderService.deleteReminder(reminderId);
         return ResponseEntity.ok("Reminder deleted successfully");
+    }
+    @PostMapping("/{reminderId}")
+    public String sendReminderEmail(@PathVariable("reminderId") UUID reminderId) {
+        // Lấy Reminder theo ID và gửi email
+        ReminderService.sendReminderEmailsForToday(); // Hoặc gọi phương thức sendReminderEmailsToFamily
+        return "Emails have been sent successfully!";
     }
 }

@@ -33,11 +33,11 @@ public class AuthServiceImpl implements AuthService {
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public AccountDto register(AccountDto accountDto) {
+    public AccountNoPassDto register(AccountDto accountDto) {
         Account account = AccountMapper.toEntity(accountDto);
         account.setPassword(passwordEncoder.encode(account.getPassword())); // Use PasswordEncoder to hash password
         Account registeredAccount = accountRepository.save(account);
-        return AccountMapper.toDto(registeredAccount);
+        return AccountMapper.toNoPassDto(registeredAccount);
     }
 
     @Override
