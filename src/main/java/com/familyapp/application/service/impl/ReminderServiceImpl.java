@@ -6,14 +6,19 @@ import com.familyapp.application.entity.*;
 import com.familyapp.application.exception.ResourceNotFoundException;
 import com.familyapp.application.mapper.AccountMapper;
 import com.familyapp.application.mapper.ReminderMapper;
+import com.familyapp.application.repository.AccountRepository;
 import com.familyapp.application.repository.FamilyRepository;
 import com.familyapp.application.repository.ReminderRepository;
 import com.familyapp.application.repository.UserRepository;
 import com.familyapp.application.service.ReminderService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -25,6 +30,8 @@ public class ReminderServiceImpl implements ReminderService {
     private ReminderRepository reminderRepository;
     private UserRepository userRepository;
     private FamilyRepository familyRepository;
+    private AccountRepository accountRepository;
+    private EmailServiceImpl emailService;
     @Override
     public ReminderDto createReminder(ReminderDto reminderDto) {
         Family family = familyRepository.findById(reminderDto.getFamilyId())
@@ -79,4 +86,48 @@ public class ReminderServiceImpl implements ReminderService {
                         () -> new ResourceNotFoundException("Reminder is not exist with given Id: " + ReminderId));
         reminderRepository.deleteById(ReminderId);
     }
+
+    @Scheduled(cron = "0 0 12 * * ?") // Mỗi ngày vào lúc 12:00 AM
+    public void sendReminderEmailsForToday() {
+        List<Reminder> reminders = reminderRepository.findAll();  // Lấy tất cả các Reminder từ cơ sở dữ liệu
+
+        // Lọc các reminder có ngày nhắc nhở là ngày hiện tại
+        LocalDate today = LocalDate.now();
+        List<Reminder> todayReminders = reminders.stream()
+                .filter(reminder -> reminder.getRemindDate().toLocalDate().isEqual(today))
+                .collect(Collectors.toList());
+
+        // Gửi email cho mỗi reminder
+        for (Reminder reminder : todayReminders) {
+            // Gọi phương thức gửi email tới gia đình
+            sendReminderEmailsToFamily(reminder);
+        }
+    }
+
+    public void sendReminderEmailsToFamily(Reminder reminder) {
+        // Lấy tất cả các thành viên thuộc gia đình
+        UUID familyId = reminder.getFamily().getFamilyId();
+        List<User> familyMembers = userRepository.findAllByFamily_FamilyId(familyId);
+
+        // Lọc ra các thành viên có assignedAccountId
+        List<String> emails = familyMembers.stream()
+                .filter(user -> user.getAssignedAccountId() != null)
+                .map(user -> accountRepository.findById(user.getAssignedAccountId().getAccountId())
+                        .map(Account::getEmail)
+                        .orElse(null))
+                .filter(email -> email != null) // Loại bỏ null
+                .collect(Collectors.toList());
+
+        // Gửi email tới từng người
+        for (String email : emails) {
+            emailService.sendEmail(
+                    email,
+                    "Reminder Notification: " + reminder.getTitle(),
+                    "Hi,\n\nThis is a friendly reminder for: " + reminder.getTitle() +
+                            "\nDetails: " + reminder.getDescription() + "\n\nBest regards,\nFamilyApp Team"
+            );
+        }
+    }
+
+
 }

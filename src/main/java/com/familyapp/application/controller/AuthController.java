@@ -19,7 +19,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
     @PostMapping("/register")
-    public ResponseEntity<AccountDto> register(@RequestBody AccountDto accountDto) {
+    public ResponseEntity<AccountNoPassDto> register(@RequestBody AccountDto accountDto) {
         return new ResponseEntity<>(authService.register(accountDto), HttpStatus.CREATED);
     }
     @PostMapping("/login")
